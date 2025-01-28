@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+prediction
+{% endblock %}
+
+{% block content%}
+    <div class="container mt-5">
+        <h1 class="mb-4">Fitness</h1>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {% for field in form if field.name != 'csrf_token' %}
+            <div class="mb-3">
+                {{ field.label(class="form-label") }}
+                {{ field(class="form-control") }}
+                {% if field.errors %}
+                {% for error in field.errors %}
+                <small class="text-danger">{{ error }}</small>
+                {% endfor %}
+                {% endif %}
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+{% endblock %}
